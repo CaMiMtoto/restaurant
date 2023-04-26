@@ -1,7 +1,9 @@
 <?php
 
 return [
-
+    'mapbox' => [
+        'public_token' => env('MAPBOX_PUBLIC_TOKEN'),
+    ],
     /*
     |--------------------------------------------------------------------------
     | Third Party Services
