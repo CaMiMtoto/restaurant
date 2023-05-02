@@ -20,7 +20,6 @@
     <div class="pb-10 bg-center bg-cover lg:min-h-[75vh]" id="header"
         style="background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url({{ asset('img/home/chefs-bg.jpg') }})">
         <x-partials._top_nav />
-
         <div class="flex flex-col items-center content-center max-w-xl mx-auto text-center text-white lg:mt-20">
             <h4 class="my-10 text-5xl font-semibold">
                 Hari <span class="font-semibold text-primary italic">Ubuzima</span>
