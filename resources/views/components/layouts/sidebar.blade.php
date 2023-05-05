@@ -19,7 +19,8 @@
                         icon="dashboard"/>
         <x-sidebar-link title="Categories" :href="route('categories.index')"
                         :active="request()->routeIs('categories.index')" icon="list"/>
-        <x-sidebar-link title="Menus" icon="book"/>
+        <x-sidebar-link title="Menus" :href="route('items.index')"
+                        :active="request()->routeIs('items.index')" icon="book"/>
         <x-sidebar-link title="Reservations" icon="utensils"/>
         <x-sidebar-link title="Orders" icon="burger"/>
         <x-sidebar-link title="Messages" icon="message"/>
