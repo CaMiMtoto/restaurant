@@ -18,6 +18,8 @@ class AddItem extends Component
     public $name = '';
     public $description = '';
     public $price = '';
+    public $status = 'available';
+    public $isSpecial = false;
     public $selectedCategories = [];
     public $photo;
 
@@ -28,7 +30,9 @@ class AddItem extends Component
         'price' => ['required', 'numeric'],
         'selectedCategories' => ['required', 'array', 'min:1'],
         'selectedCategories.*' => ['required', 'integer', 'exists:categories,id'],
-        'photo' => ['required', 'image', 'max:1024']
+        'photo' => ['required', 'image', 'max:1024'],
+        'status' => ['required', 'string', 'in:available,unavailable'],
+        'isSpecial' => ['nullable', 'boolean']
     ];
 
     public $categories;
@@ -46,7 +50,9 @@ class AddItem extends Component
         $item = Item::query()->create([
             'name' => $this->name,
             'description' => $this->description,
-            'price' => $this->price
+            'price' => $this->price,
+            'status' => $this->status,
+            'is_special' => $this->isSpecial,
         ]);
 
         // attach model to media library
@@ -56,6 +62,8 @@ class AddItem extends Component
         $item->categories()->sync($this->selectedCategories);
 
         $this->emit('itemAdded', $item);
+
+        session()->flash('success', 'Item added successfully.');
 
         $this->reset([
             'name',

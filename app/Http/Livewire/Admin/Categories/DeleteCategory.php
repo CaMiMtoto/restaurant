@@ -30,6 +30,6 @@ class DeleteCategory extends Component
         session()->flash('success', 'Category deleted successfully.');
         $this->category = null;
         $this->emit('categoryAdded');
-        $this->dispatchBrowserEvent('close-modal', 'add-category');
+        $this->dispatchBrowserEvent('close-modal', 'delete-category');
     }
 }

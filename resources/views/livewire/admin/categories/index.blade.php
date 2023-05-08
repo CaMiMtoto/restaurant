@@ -16,7 +16,7 @@
     <x-alerts/>
 
 
-    <div class="w-full md:max-w-7xl overflow-hidden rounded-lg ">
+    <div class="w-full md:max-w-7xl overflow-hidden rounded-lg  md:shadow">
         <div class="relative overflow-x-auto  rounded-lg bg-white">
             <div class="flex items-center justify-between  p-4 bg-white ">
                 <div>
@@ -121,9 +121,13 @@
 
                 </tbody>
             </table>
-            <div class="p-4">
-                {{ $categories->links() }}
-            </div>
+
+            @if($categories->hasPages())
+                <div class="p-4">
+                    {{ $categories->links() }}
+                </div>
+            @endif
+
 
         </div>
 

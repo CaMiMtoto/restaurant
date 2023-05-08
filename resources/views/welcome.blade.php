@@ -72,8 +72,8 @@
                     <div class="grid gap-3 md:grid-cols-2">
                         @for($i=0; $i<6; $i++) <a href="#"
                             class="flex flex-col items-center bg-white border-b border-gray-200 rounded-none md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                            <img class="object-contain w-full h-32 rounded-t-lg md:w-48 md:rounded-none"
-                                src="{{ asset('img/specials/specials-'.rand(1,5).'.jpg') }}" alt="">
+                            <img class="object-contain w-full h-32 rounded-t-lg md:w-48 md:rounded-none lozad"
+                                data-src="{{ asset('img/specials/specials-'.rand(1,5).'.jpg') }}" alt="">
                             <div class="flex flex-col justify-between p-2 leading-normal">
                                 <div class="flex items-center justify-between mb-2">
                                     <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
@@ -98,8 +98,8 @@
                     <div class="grid gap-3 md:grid-cols-2">
                         @for($i=0; $i<6; $i++) <a href="#"
                             class="flex flex-col items-center bg-white border-b border-gray-200 rounded-none md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                            <img class="object-contain w-full h-32 rounded-t-lg md:w-48 md:rounded-none"
-                                src="{{ asset('img/specials/specials-'.rand(1,5).'.jpg') }}" alt="">
+                            <img class="object-contain lozad w-full h-32 rounded-t-lg md:w-48 md:rounded-none"
+                                data-src="{{ asset('img/specials/specials-'.rand(1,5).'.jpg') }}" alt="">
                             <div class="flex flex-col justify-between p-2 leading-normal">
                                 <div class="flex items-center justify-between mb-2">
                                     <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
@@ -124,8 +124,8 @@
                     <div class="grid gap-3 md:grid-cols-2">
                         @for($i=0; $i<6; $i++) <a href="#"
                             class="flex flex-col items-center bg-white border-b border-gray-200 rounded-none md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-                            <img class="object-contain w-full h-32 rounded-t-lg md:w-48 md:rounded-none"
-                                src="{{ asset('img/specials/specials-'.rand(1,5).'.jpg') }}" alt="">
+                            <img class="object-contain lozad w-full h-32 rounded-t-lg md:w-48 md:rounded-none"
+                                data-src="{{ asset('img/specials/specials-'.rand(1,5).'.jpg') }}" alt="">
                             <div class="flex flex-col justify-between p-2 leading-normal">
                                 <div class="flex items-center justify-between mb-2">
                                     <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
@@ -162,7 +162,7 @@
         <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 place-items-center">
             @for($i=0; $i<4; $i++) <div class="max-w-sm bg-white dark:bg-gray-800 dark:border-gray-700">
                 <a href="#">
-                    <img class="rounded-none" src="{{ asset('img/dishes/'.rand(28,31).'.jpg') }}" alt="" />
+                    <img class="rounded-none lozad" data-src="{{ asset('img/dishes/'.rand(28,31).'.jpg') }}" alt="" />
                 </a>
                 <div class="py-5">
                     <div class="flex items-center justify-between mb-2">
@@ -279,7 +279,7 @@
             <div class="container max-w-4xl px-10 py-3 mx-auto">
                 <div class="max-w-xl mx-auto my-10 text-center">
                     <h4 class="text-3xl italic">
-                        Getin touch <span class="font-semibold text-primary">with Us</span>
+                        Get in touch <span class="font-semibold text-primary">with Us</span>
                     </h4>
                     <p class="mt-5 text-gray-800">
                         Tell us how we can help, and we’ll get back to you shortly.

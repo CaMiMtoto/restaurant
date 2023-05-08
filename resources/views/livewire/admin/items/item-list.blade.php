@@ -12,9 +12,9 @@
     </div>
 
 
-    <div class="w-full md:max-w-7xl overflow-hidden rounded-lg ">
-        <div class="relative overflow-x-auto  rounded-lg">
-            <div class="flex items-center justify-between  p-4 bg-white ">
+    <div class="w-full md:max-w-7xl overflow-hidden bg-white rounded-lg md:shadow">
+        <div class="relative overflow-x-auto rounded-lg">
+            <div class="flex p-4 items-center justify-between">
                 <div>
                     <h3 class="text-lg font-semibold text-gray-800">Items</h3>
                     <p class="text-sm font-medium text-gray-400">List of all items</p>
@@ -36,24 +36,26 @@
                     </div>
                 </div>
             </div>
-            <table class="w-full text-sm text-left text-gray-500">
+
+            <table class="w-full text-sm text-left text-gray-500" wire:loading.class="opacity-50">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50">
                 <tr>
-                    <th scope="col" class="p-4">
-                        <div class="flex items-center">
-                            <input id="checkbox-all-search" type="checkbox"
-                                   class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                            <label for="checkbox-all-search" class="sr-only">checkbox</label>
-                        </div>
-                    </th>
+
                     <th scope="col" class="px-6 py-3">
                         Name
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Items
+                        Price
                     </th>
                     <th scope="col" class="px-6 py-3">
-                        Created At
+                        Categories
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                        Is Special
+                    </th>
+
+                    <th scope="col" class="px-6 py-3">
+                        Status
                     </th>
                     <th scope="col" class="px-6 py-3">
                         Action
@@ -61,49 +63,84 @@
                 </tr>
                 </thead>
                 <tbody>
-                @foreach($items as $item)
+                @forelse($items as $item)
                     <tr class="bg-white border-b hover:bg-gray-50" wire:key="tr{{$item->id}}">
-                        <td class="w-4 p-4">
-                            <div class="flex items-center">
-                                <input id="checkbox-{{$item->id}}" type="checkbox"
-                                       class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                <label for="checkbox-{{$item->id}}" class="sr-only">checkbox</label>
+
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-4">
+                                <img src="{{ $item->photo_thumbnail_url }}" alt="" class="w-10 h-10 rounded-full">
+                                <div>
+                                    {{ $item->name }}
+                                </div>
                             </div>
+
                         </td>
                         <td class="px-6 py-4">
-                            {{ $item->name }}
+                            {{ number_format($item->price) }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $item->items_count }}
+                            @foreach($item->categories as $category)
+                                <x-app-label class="capitalize">
+                                    {{ $category->name }}
+                                </x-app-label>
+                            @endforeach
                         </td>
                         <td class="px-6 py-4">
-                            {{ $item->created_at }}
+                            <x-app-label color="{{ $item->is_special ? 'success' : 'danger' }}">
+                                {{ $item->is_special ? 'Yes' : 'No' }}
+                            </x-app-label>
+                        </td>
+                        <td class="px-6 py-4">
+                            <x-app-label color="{{ $item->status=='available' ? 'success' : 'danger' }}"
+                                         class="capitalize">
+                                {{ $item->status }}
+                            </x-app-label>
                         </td>
                         <td class="px-6 py-4">
                             <div class="flex items-center gap-2">
                                 <button type="button"
-                                        class="w-10 h-10 flex items-center justify-center rounded-full bg-primary/10 text-primary">
+                                        x-data=""
+                                        x-on:click.prevent="$dispatch('open-modal', 'edit-item')"
+                                        wire:click="$emit('editItem', {{ $item->id }})"
+                                        class="w-8 h-8 p-4 flex items-center justify-center rounded-full bg-primary/10 text-primary hover:bg-primary hover:text-white">
                                     <i class="fas fa-edit"></i>
                                 </button>
                                 <button type="button"
-                                        class="w-10 h-10 flex items-center justify-center rounded-full bg-red-700/10 text-red-600">
+                                        x-data=""
+                                        x-on:click.prevent="$dispatch('open-modal', 'delete-item')"
+                                        wire:click="$emit('deleteItem', {{ $item->id }})"
+                                        class="w-8 h-8 p-4 flex items-center justify-center rounded-full bg-red-700/10 text-red-600 hover:bg-red-600 hover:text-white">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
                         </td>
                     </tr>
-                @endforeach
+                @empty
+                    <tr class="bg-white ">
+                        <td colspan="7" class="px-6 py-4 text-center">
+                            <x-alert-info message="No items found"/>
+                        </td>
+                    </tr>
+                @endforelse
 
                 </tbody>
             </table>
-        </div>
 
+            @if($items->hasPages())
+                <div class="p-4" >
+                    {{ $items->links() }}
+                </div>
+            @endif
+
+
+        </div>
     </div>
 
-
-    <livewire:admin.items.add-item/>
-    <livewire:admin.items.edit-item/>
-    <livewire:admin.items.delete-item/>
+    <div wire:ignore>
+        <livewire:admin.items.add-item/>
+        <livewire:admin.items.edit-item/>
+        <livewire:admin.items.delete-item/>
+    </div>
 
 
 </div>

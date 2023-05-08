@@ -16,6 +16,9 @@ class Item extends Model implements HasMedia
     use HasFactory;
     use InteractsWithMedia;
 
+    protected $with = ['media'];
+    protected $appends = ['photo_url', 'photo_thumbnail_url'];
+
     /**
      * @throws InvalidManipulation
      */
@@ -30,6 +33,16 @@ class Item extends Model implements HasMedia
     public function categories(): BelongsToMany
     {
         return $this->belongsToMany(Category::class);
+    }
+
+    public function getPhotoUrlAttribute(): string
+    {
+        return $this->getFirstMediaUrl('item-photos');
+    }
+
+    public function getPhotoThumbnailUrlAttribute(): string
+    {
+        return $this->getFirstMediaUrl('item-photos', 'preview');
     }
 
 }

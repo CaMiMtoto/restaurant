@@ -10,12 +10,9 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('items', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->text('description');
-            $table->decimal('price', 10, 0);
-            $table->timestamps();
+        Schema::table('items', function (Blueprint $table) {
+            $table->boolean('is_special')->default(false);
+            $table->string('status')->default('available');
         });
     }
 
@@ -24,6 +21,9 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('items');
+        Schema::table('items', function (Blueprint $table) {
+            $table->dropColumn('is_special');
+            $table->dropColumn('status');
+        });
     }
 };
