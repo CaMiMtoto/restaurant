@@ -28,12 +28,12 @@ class Index extends Component
 
         $categories = Category::query()
             ->withCount('items')
-            ->where('name', 'like', '%' . $this->query . '%')
+            ->where('name', 'like', '%'.$this->query.'%')
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
         return view('livewire.admin.categories.index', [
-            'categories' => $categories
+            'categories' => $categories,
         ]);
     }
 
@@ -49,5 +49,4 @@ class Index extends Component
         Category::query()->whereIn('id', $this->selectedCategories)->delete();
         session()->flash('success', 'Categories deleted successfully.');
     }
-
 }

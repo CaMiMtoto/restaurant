@@ -12,13 +12,15 @@ use Livewire\WithPagination;
 class ItemList extends Component
 {
     use WithPagination;
+
     public $perPage = 10;
+
     protected $listeners = ['itemAdded' => '$refresh'];
 
     public string $query = '';
 
     protected $queryString = [
-        'query' => ['except' => '']
+        'query' => ['except' => ''],
     ];
 
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application
@@ -26,11 +28,12 @@ class ItemList extends Component
 
         $items = Item::query()
             ->with('categories')
-            ->where('name', 'like', '%' . $this->query . '%')
+            ->where('name', 'like', '%'.$this->query.'%')
             ->orderBy('created_at', 'desc')
             ->paginate($this->perPage);
+
         return view('livewire.admin.items.item-list', [
-            'items' => $items
+            'items' => $items,
         ]);
     }
 }

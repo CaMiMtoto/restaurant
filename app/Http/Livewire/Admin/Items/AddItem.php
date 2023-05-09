@@ -7,7 +7,6 @@ use App\Models\Item;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Database\Eloquent\Collection;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -16,13 +15,18 @@ class AddItem extends Component
     use WithFileUploads;
 
     public $name = '';
-    public $description = '';
-    public $price = '';
-    public $status = 'available';
-    public $isSpecial = false;
-    public $selectedCategories = [];
-    public $photo;
 
+    public $description = '';
+
+    public $price = '';
+
+    public $status = 'available';
+
+    public $isSpecial = false;
+
+    public $selectedCategories = [];
+
+    public $photo;
 
     protected $rules = [
         'name' => ['required', 'string', 'max:255'],
@@ -32,7 +36,7 @@ class AddItem extends Component
         'selectedCategories.*' => ['required', 'integer', 'exists:categories,id'],
         'photo' => ['required', 'image', 'max:1024'],
         'status' => ['required', 'string', 'in:available,unavailable'],
-        'isSpecial' => ['nullable', 'boolean']
+        'isSpecial' => ['nullable', 'boolean'],
     ];
 
     public $categories;
@@ -45,7 +49,6 @@ class AddItem extends Component
     public function save(): void
     {
         $this->validate();
-
 
         $item = Item::query()->create([
             'name' => $this->name,
@@ -70,7 +73,7 @@ class AddItem extends Component
             'description',
             'price',
             'selectedCategories',
-            'photo'
+            'photo',
         ]);
     }
 

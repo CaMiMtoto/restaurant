@@ -15,12 +15,19 @@ class EditItem extends Component
     use WithFileUploads;
 
     public $item;
+
     public $name = '';
+
     public $description = '';
+
     public $price = '';
+
     public $status = 'available';
+
     public $isSpecial = false;
+
     public $selectedCategories = [];
+
     public $photo;
 
     protected $listeners = ['editItem' => 'edit'];
@@ -45,7 +52,7 @@ class EditItem extends Component
             'selectedCategories.*' => ['required', 'integer', 'exists:categories,id'],
             'photo' => ['nullable', 'image', 'max:1024'],
             'status' => ['required', 'string', 'in:available,unavailable'],
-            'isSpecial' => ['nullable', 'boolean']
+            'isSpecial' => ['nullable', 'boolean'],
         ];
     }
 
@@ -62,8 +69,9 @@ class EditItem extends Component
         ]);
 
         if ($this->photo) {
-            if ($this->item->getFirstMedia('item-photos'))
+            if ($this->item->getFirstMedia('item-photos')) {
                 $this->item->getFirstMedia('item-photos')->delete();
+            }
 
             $this->item->addMedia($this->photo->getRealPath())
                 ->toMediaCollection('item-photos');
@@ -73,7 +81,7 @@ class EditItem extends Component
 
         session()->flash('success', 'Item updated successfully.');
         $this->reset([
-            'photo'
+            'photo',
         ]);
         $this->emit('itemAdded');
     }
@@ -81,7 +89,7 @@ class EditItem extends Component
     public function edit($id): void
     {
         $this->item = Item::query()->findOrFail($id);
-//        dd($this->item);
+        //        dd($this->item);
         $this->name = $this->item->name;
         $this->description = $this->item->description;
         $this->price = $this->item->price;
@@ -90,6 +98,4 @@ class EditItem extends Component
         $this->selectedCategories = $this->item->categories->pluck('id')->toArray();
 
     }
-
-
 }

@@ -32,7 +32,6 @@ class DeleteItem extends Component
         $this->item = Item::query()->find($id);
     }
 
-
     public function render()
     {
         return view('livewire.admin.items.delete-item');

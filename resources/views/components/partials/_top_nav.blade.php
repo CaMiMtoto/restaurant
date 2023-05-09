@@ -40,21 +40,21 @@
             <div class="flex flex-col items-center justify-center flex-grow py-4 lg:flex-row">
                 <a class="text-xl font-bold text-white hover:text-primary" href="#">
                     <img
-                            src="{{ asset('img/hari-ubuzima-high-resolution-logo-color-on-transparent-background.png') }}"
-                            class="h-16" alt=""/>
+                        src="{{ asset('img/hari-ubuzima-high-resolution-logo-color-on-transparent-background.png') }}"
+                        class="h-16" alt=""/>
                 </a>
             </div>
 
             <!-- Right Section -->
             <div class="flex flex-col items-center gap-4 py-4 lg:flex-row">
-                <a class="text-sm font-semibold tracking-wide text-gray-200 uppercase hover:text-primary"
-                   href="#events">
-                    News& Events
-                </a>
-                <a class="text-sm font-semibold tracking-wide text-gray-200 uppercase hover:text-primary"
-                   href="#gallery">
-                    Gallery
-                </a>
+                {{--     <a class="text-sm font-semibold tracking-wide text-gray-200 uppercase hover:text-primary"
+                        href="#events">
+                         News& Events
+                     </a>--}}
+                {{--        <a class="text-sm font-semibold tracking-wide text-gray-200 uppercase hover:text-primary"
+                           href="#gallery">
+                            Gallery
+                        </a>--}}
                 <a class="text-sm font-semibold tracking-wide text-gray-200 uppercase hover:text-primary"
                    href="#contact">
                     Contact
@@ -63,6 +63,9 @@
                    href="#about">
                     About Us
                 </a>
+                {{--                cart counter--}}
+                <livewire:cart-counter/>
+
             </div>
 
 

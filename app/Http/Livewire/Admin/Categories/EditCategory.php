@@ -18,7 +18,8 @@ class EditCategory extends Component
 
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application
     {
-        info("name" . $this->name);
+        info('name'.$this->name);
+
         return view('livewire.admin.categories.edit-category');
     }
 

@@ -10,13 +10,12 @@ use Livewire\Component;
 
 class AddCategory extends Component
 {
-
     public string $name = '';
 
     public function save(): void
     {
         $this->validate([
-            'name' => 'required|unique:categories,name'
+            'name' => 'required|unique:categories,name',
         ]);
 
         $category = new Category();
