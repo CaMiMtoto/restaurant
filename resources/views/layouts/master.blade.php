@@ -16,11 +16,14 @@
     @yield('styles')
 </head>
 
-<body class="antialiased" id="top">
-{{ $slot }}
+<body class="antialiased" id="top" x-data="{openSummary:false}" x-cloak>
+<div class="flex flex-col justify-between min-h-screen">
+    {{ $slot }}
+    {{--footer--}}
+    <x-footer/>
+</div>
 
-{{--footer--}}
-<x-footer/>
+<livewire:cart-summary/>
 @livewireScripts
 
 <script>

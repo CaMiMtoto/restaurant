@@ -19,9 +19,9 @@
                     <form action="" class="flex flex-col gap-2 sm:flex-row">
                         <label for="subscribe-email" class="sr-only">Email</label>
                         <input type="email" placeholder="Email address" id="subscribe-email"
-                               class="bg-white border border-gray-100  text-gray-900 text-sm rounded-none focus:ring-primary focus:border-primary focus:ring-offset-2 block w-full px-2.5 py-3">
+                               class="bg-white border border-gray-100  text-gray-900 text-sm rounded-sm focus:ring-primary focus:border-primary focus:ring-offset-2 block w-full px-2.5 py-3">
                         <button type="submit"
-                                class="self-center px-6 py-3 text-sm font-semibold text-white uppercase border border-primary bg-primary hover:text-gray-50 focus:ring focus:ring-offset-2 focus:ring-primary">
+                                class="self-center px-6 py-3 text-sm font-semibold text-white uppercase border border-primary bg-primary hover:text-gray-50 focus:ring focus:ring-offset-2 focus:ring-primary rounded-sm">
                             Subscribe
                         </button>
                     </form>
