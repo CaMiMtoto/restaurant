@@ -1,4 +1,4 @@
-<div class="my-4">
+<div>
     @if(session()->has('success'))
         <x-alert-success :message="session('success')"/>
     @endif

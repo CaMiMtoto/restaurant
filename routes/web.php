@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
-//Route::get('/my-list', MyList::class)->name('my-list');
+Route::get('/place-order', \App\Http\Livewire\PlaceOrder::class)->name('place-order');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

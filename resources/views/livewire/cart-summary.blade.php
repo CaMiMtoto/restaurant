@@ -2,7 +2,8 @@
 
     class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
 
-    <div style="display: none" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" x-show="openSummary"></div>
+    <div style="display: none" class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"
+         x-show="openSummary"></div>
 
     <div style="display: none" class="fixed inset-0 overflow-hidden" x-show="openSummary"
          x-transition:enter="transition transform ease-in-out duration-300"
@@ -12,7 +13,8 @@
         <div class="absolute inset-0 overflow-hidden">
             <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
                 <div class="pointer-events-auto w-screen max-w-md">
-                    <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl" @click.outside="openSummary=false" @close.stop="openSummary = false">
+                    <div class="flex h-full flex-col overflow-y-scroll bg-white shadow-xl"
+                         @click.outside="openSummary=false" @close.stop="openSummary = false">
                         <div class="flex-1 overflow-y-auto px-4 py-6 sm:px-6">
                             <div class="flex items-start justify-between ">
                                 <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">
@@ -113,8 +115,7 @@
                                     You will be charged for this amount.
                                 </p>
                                 <div class="mt-6">
-                                    <a href="#"
-
+                                    <a href="{{ route('place-order') }}"
                                        class="flex items-center justify-center rounded-sm border border-transparent bg-primary px-6 py-2 text-base font-medium text-white shadow-sm hover:bg-primary/80">
                                         Place Order
                                     </a>
