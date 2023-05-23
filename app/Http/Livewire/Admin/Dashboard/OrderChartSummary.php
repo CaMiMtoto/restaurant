@@ -37,12 +37,11 @@ class OrderChartSummary extends Component
     public function mount(): void
     {
         // Retrieve the order counts from your data source
-
+        $this->retrieveTheOrderCountsFromYourDataSource();
     }
 
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application
     {
-        $this->retrieveTheOrderCountsFromYourDataSource();
         return view('livewire.admin.dashboard.order-chart-summary');
     }
 
@@ -51,12 +50,12 @@ class OrderChartSummary extends Component
      */
     public function retrieveTheOrderCountsFromYourDataSource(): void
     {
-        $toDateString = now()->subDays($this->selectedDays)->toDateString();
-        $this->totalOrders = $this->getOrdersCount(null);
-        $this->completedCount = $this->getOrdersCount(Order::STATUS_COMPLETED);
-        $this->pendingCount = $this->getOrdersCount(Order::STATUS_PENDING);
-        $this->declinedCount = $this->getOrdersCount(Order::STATUS_DECLINED);
-        $this->processingCount = $this->getOrdersCount(Order::STATUS_PROCESSING);
+        $orderCounts = $this->getGroupedOrders();
+        $this->totalOrders = array_sum($orderCounts);
+        $this->completedCount = $orderCounts[Order::STATUS_COMPLETED] ?? 0;
+        $this->pendingCount = $orderCounts[Order::STATUS_PENDING] ?? 0;
+        $this->declinedCount = $orderCounts[Order::STATUS_DECLINED] ?? 0;
+        $this->processingCount = $orderCounts[Order::STATUS_PROCESSING] ?? 0;
 
         $this->pendingPercentage = $this->totalOrders ? round($this->pendingCount / $this->totalOrders * 100) : 0;
         $this->completedPercentage = $this->totalOrders ? round($this->completedCount / $this->totalOrders * 100) : 0;
@@ -64,14 +63,14 @@ class OrderChartSummary extends Component
         $this->processingPercentage = $this->totalOrders ? round($this->processingCount / $this->totalOrders * 100) : 0;
     }
 
-    private function getOrdersCount($status): int
+    private function getGroupedOrders(): array
     {
         $toDateString = now()->subDays($this->selectedDays)->toDateString();
         return Order::query()
-            ->when($status, function ($query) use ($status) {
-                $query->where('status', $status);
-            })
             ->whereDate('created_at', '>=', $toDateString)
-            ->count();
+            ->selectRaw('status, COUNT(*) as count')
+            ->groupBy('status')
+            ->pluck('count', 'status')
+            ->toArray();
     }
 }
