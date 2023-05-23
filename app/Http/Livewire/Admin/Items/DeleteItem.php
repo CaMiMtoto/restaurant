@@ -14,10 +14,9 @@ class DeleteItem extends Component
     public function deleteItem(): void
     {
         try {
-
-            $this->item->clearMediaCollection('item-photo');
-
+            $prevItem = $this->item;
             $this->item->delete();
+            $prevItem->clearMediaCollection('item-photo');
             session()->flash('success', 'Item deleted successfully.');
             $this->item = null;
             $this->emit('itemAdded');

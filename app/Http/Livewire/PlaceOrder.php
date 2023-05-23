@@ -53,7 +53,7 @@ class PlaceOrder extends Component
             }
             DB::commit();
             Cart::clear();
-            session()->flash('message', 'Order submitted successfully.');
+            session()->flash('success', 'Order submitted successfully.We get back to you later.');
             redirect()->route('welcome');
         } catch (Exception $e) {
             DB::rollBack();

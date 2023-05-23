@@ -17,7 +17,7 @@
 </head>
 
 <body class="antialiased" id="top" x-data="{openSummary:false}" x-cloak>
-<x-alerts/>
+
 <div class="flex flex-col justify-between min-h-screen">
     {{ $slot }}
     {{--footer--}}

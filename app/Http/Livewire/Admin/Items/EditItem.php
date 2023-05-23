@@ -50,7 +50,7 @@ class EditItem extends Component
             'price' => ['required', 'numeric'],
             'selectedCategories' => ['required', 'array', 'min:1'],
             'selectedCategories.*' => ['required', 'integer', 'exists:categories,id'],
-            'photo' => ['nullable', 'image', 'max:1024'],
+            'photo' => ['nullable', 'mimes:jpeg,jpg,png,webp,avif', 'max:1024'],
             'status' => ['required', 'string', 'in:available,unavailable'],
             'isSpecial' => ['nullable', 'boolean'],
         ];
@@ -89,13 +89,11 @@ class EditItem extends Component
     public function edit($id): void
     {
         $this->item = Item::query()->findOrFail($id);
-        //        dd($this->item);
         $this->name = $this->item->name;
         $this->description = $this->item->description;
         $this->price = $this->item->price;
         $this->status = $this->item->status;
         $this->isSpecial = $this->item->is_special;
         $this->selectedCategories = $this->item->categories->pluck('id')->toArray();
-
     }
 }

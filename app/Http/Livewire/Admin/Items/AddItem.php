@@ -34,7 +34,7 @@ class AddItem extends Component
         'price' => ['required', 'numeric'],
         'selectedCategories' => ['required', 'array', 'min:1'],
         'selectedCategories.*' => ['required', 'integer', 'exists:categories,id'],
-        'photo' => ['required', 'image', 'max:1024'],
+        'photo' => ['required', 'mimes:jpeg,jpg,png,webp,avif', 'max:1024'],
         'status' => ['required', 'string', 'in:available,unavailable'],
         'isSpecial' => ['nullable', 'boolean'],
     ];

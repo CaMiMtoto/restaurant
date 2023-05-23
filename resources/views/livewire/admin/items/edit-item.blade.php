@@ -96,7 +96,9 @@
                 <x-input-error :messages="$errors->get('status')" class="mt-2"/>
             </div>
 
-            <x-alerts/>
+           <div class="my-3">
+               <x-alerts/>
+           </div>
             <div class="mt-6 flex justify-end gap-4">
                 <x-primary-button type="submit" wire:loading.attr="disabled">
                     Save Changes

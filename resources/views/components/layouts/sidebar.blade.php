@@ -6,11 +6,15 @@
 
     </div>
     <div class="mt-8 flex items-center">
-        <div class="w-10 h-10 rounded-full bg-primary"></div>
+        <img class="w-16 h-16 rounded-full" src="{{ auth()->user()->profile_photo_url }}" alt="{{ auth()->user()->name }}"/>
         <div class="ml-4">
-            <div class="font-medium text-base text-gray-800">John Doe</div>
+            <div class="font-medium text-base text-gray-800">
+                {{ auth()->user()->name }}
+            </div>
             <div class="mt-1">
-                <a href="#" class="text-gray-600 hover:text-gray-900">Log out</a>
+                <span href="#" class="text-gray-600 hover:text-gray-900">
+                    {{ auth()->user()->email }}
+                </span>
             </div>
         </div>
     </div>
@@ -21,8 +25,10 @@
                         :active="request()->routeIs('categories.index')" icon="list"/>
         <x-sidebar-link title="Menus" :href="route('items.index')"
                         :active="request()->routeIs('items.index')" icon="book"/>
-        <x-sidebar-link title="Reservations" icon="utensils"/>
-        <x-sidebar-link title="Orders" icon="burger"/>
+        <x-sidebar-link title="Reservations" icon="utensils" :href="route('reservations.index')"
+                        :active="request()->routeIs('reservations.index')"/>
+        <x-sidebar-link title="Orders" icon="burger" :href="route('orders.index')"
+                        :active="request()->routeIs('orders.index')"/>
         <x-sidebar-link title="Messages" icon="message"/>
         <x-sidebar-link title="Gallery" icon="image"/>
         <x-sidebar-link title="Newsletters" icon="square-rss"/>

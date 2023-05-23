@@ -2,7 +2,7 @@
     'message'=>''
 ])
 <div
-    {{ $attributes->class(['flex p-4  text-sm text-green-800 rounded-sm bg-green-50 border border-green-800']) }}
+    {{ $attributes->class(['flex p-4  text-sm text-green-800 rounded-md bg-green-50 border border-green-800']) }}
     role="alert">
      <span class="mr-2">
            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"

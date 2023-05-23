@@ -41,7 +41,7 @@
                     <div class="relative">
                         <label>
                             <input type="text" placeholder="Search"
-                                   class="block w-64 py-2.5 pl-8 pr-2 rounded-md  text-sm bg-white border border-gray-200 leading-tight focus:outline-none sm:focus:w-96 transition-all duration-500 ease-in-out focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:border-gray-200">
+                                   class="block w-64 py-2.5 pl-8 pr-2 rounded-sm  text-sm bg-white border border-gray-200 leading-tight focus:outline-none sm:focus:w-96 transition-all duration-500 ease-in-out focus:ring-2 focus:ring-primary focus:ring-offset-2 focus:border-gray-200">
                         </label>
                         <div class="absolute top-0 left-0 mt-2.5 ml-2 text-primary">
                             <svg class="w-4 h-4 fill-current " xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20">

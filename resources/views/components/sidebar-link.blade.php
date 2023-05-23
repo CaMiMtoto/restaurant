@@ -7,7 +7,7 @@
 
 <li {{ $attributes }}>
     <a href="{{ $href }}"
-       class="text-gray-700 text-base  items-center w-full inline-flex font-semibold py-2 px-4 rounded-md {{ $active?'text-white bg-primary':'' }}">
+       class="text-gray-700 text-base  items-center w-full inline-flex font-semibold py-2 px-4 rounded-sm {{ $active?'text-white bg-primary':'' }}">
         @if ($icon)
             <i class="fa-solid fa-{{ $icon }}"></i>
         @endif

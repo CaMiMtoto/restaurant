@@ -18,7 +18,7 @@
     </div>
 
     <div class="container px-10 py-3 mx-auto max-w-7xl">
-
+        <x-alerts/>
         {{--menu options--}}
         <div class="max-w-xl mx-auto my-10 text-center" id="menu">
             <h4 class="text-3xl">
@@ -60,14 +60,14 @@
                                                 </h5>
 
                                                 <span class="text-gray-700 dark:text-gray-400">
-                                            {{ number_format($item->price) }}
-                                        </span>
+                                        {{ number_format($item->price) }}
+                                    </span>
 
                                             </div>
                                             <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
                                                 {{ $item->description }}
                                             </p>
-                                            {{--                                        add to list button--}}
+                                            {{-- add to list button--}}
                                             <livewire:add-to-list :item="$item"/>
                                         </div>
                                     </div>
@@ -97,7 +97,8 @@
             @foreach($specialItems as $item)
                 <div class="max-w-sm bg-white dark:bg-gray-800 dark:border-gray-700 mx-5">
                     <img class="rounded-none lozad h-64 w-full md:w-72 object-cover"
-                         src="{{ $item->photo_thumbnail_url }}" alt=""/>
+                         src="{{ $item->photo_thumbnail_url }}"
+                         alt=""/>
                     <div class="py-5">
                         <div class="flex items-center justify-between mb-2">
                             <a href="" class="text-lg font-medium tracking-tight text-gray-900 dark:text-white">
@@ -128,7 +129,19 @@
                     Reserve a table for your next visit to our restaurant. We will be happy to serve you.
                 </p>
             </div>
-            <livewire:table-reservation/>
+            {{--            <livewire:table-reservation />--}}
+            <div class="grid place-items-center">
+                <h1 class="uppercase tracking-wider text-4xl font-semibold">
+                    Comming soon
+                </h1>
+                <form class="mt-6 flex items-center gap-4">
+                    <x-text-input placeholder="Email" disabled class=" rounded-sm" type="email" name="email" required/>
+                    <button disabled type="submit"
+                        class="px-4 py-2 text-sm font-bold rounded-sm text-white uppercase bg-primary hover:bg-primary-dark">
+                        Get notified
+                    </button>
+                </form>
+            </div>
         </div>
     </div>
 
@@ -155,7 +168,7 @@
                             <label for="name" class="block mb-2 text-sm font-medium text-gray-900 sr-only">
                                 Full Name
                             </label>
-                            <input type="text" id="name" name="name" placeholder="Full name"
+                            <input type="text" id="name" name="name" placeholder="Full name" disabled
                                    class="bg-white border border-gray-100  text-gray-900 text-sm rounded-none focus:ring-primary focus:border-primary focus:ring-offset-2 block w-full px-2.5 py-3"
                                    required>
                         </div>
@@ -164,7 +177,7 @@
                             <label for="email" class="block mb-2 text-sm font-medium text-gray-900 sr-only">
                                 Email address
                             </label>
-                            <input type="email" id="email" name="email" placeholder="Email address"
+                            <input type="email" id="email" name="email" placeholder="Email address" disabled
                                    class="bg-white border border-gray-100  text-gray-900 text-sm rounded-none focus:ring-primary focus:border-primary focus:ring-offset-2 block w-full px-2.5 py-3">
                         </div>
 
@@ -172,11 +185,11 @@
                             <label for="message" class="block mb-2 text-sm font-medium text-gray-900 sr-only">
                                 Message
                             </label>
-                            <textarea id="message" name="message" placeholder="Message" rows="5"
+                            <textarea id="message" name="message" placeholder="Message" rows="5" disabled
                                       class="bg-white border border-gray-100  text-gray-900 text-sm rounded-none focus:ring-primary focus:border-primary focus:ring-offset-2 block w-full px-2.5 py-3"></textarea>
                         </div>
                     </div>
-                    <button type="submit"
+                    <button type="submit" disabled
                             class="self-center px-6 py-3 text-sm font-semibold text-white uppercase border border-primary bg-primary hover:text-gray-50 focus:ring focus:ring-offset-2 focus:ring-primary">
                         Send a Message
                     </button>

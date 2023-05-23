@@ -16,7 +16,7 @@
     @endif
 
     @if(session()->has('status'))
-        <div class="flex p-4 mb-4 text-sm text-gray-800 rounded-lg bg-gray-50"
+        <div class="flex p-4 mb-4 text-sm text-gray-800 rounded-md bg-gray-50"
              role="alert">
                     <span class="mr-2">
                         <i class="fa-solid fa-info-circle"></i>
