@@ -1,14 +1,19 @@
 <div class="container my-10">
-    <div class="flex items-center justify-between mb-6">
-        <h1 class="text-xl font-semibold">
-            Manage Orders
-        </h1>
-        <x-primary-button type="button"
+    <div class="flex items-center justify-between mb-4">
+        <div>
+            <h3 class="text-lg font-semibold text-gray-800">
+                Orders
+            </h3>
+            <p class="text-sm font-medium text-gray-400">
+                List of all orders
+            </p>
+        </div>
+   {{--     <x-primary-button type="button"
                           x-data=""
                           x-on:click.prevent="$dispatch('open-modal', 'add-order')">
             <i class="fas fa-plus mr-2"></i>
             Add New
-        </x-primary-button>
+        </x-primary-button>--}}
     </div>
 
 
@@ -16,12 +21,39 @@
         <div class="relative overflow-x-auto rounded-lg">
             <div class="flex p-4 items-center justify-between">
                 <div>
-                    <h3 class="text-lg font-semibold text-gray-800">
-                        Orders
-                    </h3>
-                    <p class="text-sm font-medium text-gray-400">
-                        List of all orders
-                    </p>
+                    <x-dropdown align="left" width="48">
+                        <x-slot name="trigger">
+                            <button
+                                class="inline-flex items-center px-3 py-2 border border-primary/20 text-sm leading-4 font-medium rounded-sm bg-primary/10 text-primary focus:outline-none transition ease-in-out duration-150">
+                                <div class="font-semibold">
+                                    <i class="fas fa-filter mr-1"></i>
+                                    {{ ucfirst($selectedFilter) }}
+                                </div>
+
+                                <div class="ml-1">
+                                    <svg class="fill-current h-4 w-4" xmlns="http://www.w3.org/2000/svg"
+                                         viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                              clip-rule="evenodd"/>
+                                    </svg>
+                                </div>
+                            </button>
+                        </x-slot>
+
+                        <x-slot name="content">
+                            <x-dropdown-link href="" wire:click.prevent="$set('selectedFilter', 'all')"
+                                             class="font-semibold">
+                               All
+                            </x-dropdown-link>
+                            @foreach(\App\Models\Order::statuses() as $item)
+                                <x-dropdown-link href="" wire:click.prevent="$set('selectedFilter', '{{ $item }}')"
+                                                 class="font-semibold">
+                                    {{ ucfirst($item) }}
+                                </x-dropdown-link>
+                            @endforeach
+                        </x-slot>
+                    </x-dropdown>
                 </div>
                 <div>
                     <label for="table-search" class="sr-only">Search</label>
@@ -64,7 +96,7 @@
                             {{ number_format($item->total) }}
                         </td>
                         <td class="px-6 py-4">
-                            <x-app-label :color="$item->statusColor" class="capitalize">
+                            <x-app-label :color="$item->statusColor" class="capitalize rounded-full">
                                 {{ $item->status }}
                             </x-app-label>
                         </td>
@@ -74,7 +106,7 @@
                                         x-data=""
                                         x-on:click.prevent="$dispatch('open-modal', 'order-details')"
                                         wire:click="$emit('orderSelected', {{ $item->id }})"
-                                        class="px-4 py-1.5 font-semibold flex items-center justify-center rounded-md bg-primary/20 text-gray-900 hover:bg-primary hover:text-white">
+                                        class="px-4 py-1.5 font-semibold flex items-center justify-center rounded-sm bg-primary/20 text-gray-900 hover:bg-primary hover:text-white">
                                     Details
                                 </button>
                             </div>

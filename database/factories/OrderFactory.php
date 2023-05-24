@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Order;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,14 @@ class OrderFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'customer_name' => $this->faker->name,
+            'customer_email' => $this->faker->email,
+            'customer_phone' => $this->faker->phoneNumber,
+            'delivery_address' => $this->faker->address,
+            'note' => $this->faker->text,
+            'status' => $this->faker->randomElement(Order::statuses()),
+            'created_at' => $this->faker->dateTimeBetween('-2 year'),
+            'updated_at' => $this->faker->dateTimeBetween('-2 year'),
         ];
     }
 }

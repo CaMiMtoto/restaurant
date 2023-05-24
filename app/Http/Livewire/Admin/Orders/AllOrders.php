@@ -12,11 +12,25 @@ use Livewire\WithPagination;
 class AllOrders extends Component
 {
     use WithPagination;
+
     protected $listeners = ['orderUpdated' => '$refresh'];
 
     public $search = '';
+    public $selectedFilter = 'all';
+
+    public function updatingSearch(): void
+    {
+        $this->resetPage();
+    }
+
+    public function updatingSelectedFilter(): void
+    {
+        $this->resetPage();
+    }
+
     protected $queryString = [
         'search' => ['except' => ''],
+        'selectedFilter' => ['except' => ''],
     ];
 
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application
@@ -28,6 +42,9 @@ class AllOrders extends Component
                     ->orWhere('customer_email', 'like', '%' . $this->search . '%')
                     ->orWhere('customer_phone', 'like', '%' . $this->search . '%')
                     ->orWhere('status', 'like', '%' . $this->search . '%');
+            })
+            ->when($this->selectedFilter !== 'all', function ($query) {
+                $query->where('status', $this->selectedFilter);
             })
             ->latest()
             ->paginate(10);
