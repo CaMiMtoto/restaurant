@@ -40,7 +40,7 @@
                         <h1 class="font-semibold text-3xl mb-3">
                             {{ number_format($pendingCount) }}
                         </h1>
-                        <h5 class="text-gray-500 font-semibold">
+                        <h5 class="text-gray-500 font-semibold text-xs">
                             Pending
                         </h5>
                     </div>
@@ -48,7 +48,7 @@
                         <h1 class="font-semibold text-3xl mb-3">
                             {{ number_format($processingCount) }}
                         </h1>
-                        <h5 class="text-gray-500 font-semibold">
+                        <h5 class="text-gray-500 font-semibold text-xs">
                             Processing
                         </h5>
                     </div>
@@ -56,13 +56,13 @@
                         <h1 class="font-semibold text-3xl mb-3">
                             {{ number_format($completedCount) }}
                         </h1>
-                        <h5 class="text-gray-500 font-semibold">Completed</h5>
+                        <h5 class="text-gray-500 font-semibold text-xs">Completed</h5>
                     </div>
                     <div class="border border-gray-200 bg-white rounded-md p-4">
                         <h1 class="font-semibold text-3xl mb-3">
                             {{ number_format($declinedCount) }}
                         </h1>
-                        <h5 class="text-gray-500 font-semibold">
+                        <h5 class="text-gray-500 font-semibold text-xs">
                             Declined
                         </h5>
                     </div>
