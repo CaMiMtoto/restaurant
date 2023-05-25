@@ -32,7 +32,7 @@ class CreateForm extends Component
         User::create([
             'name' => $this->name,
             'email' => $this->email,
-            'password' => Hash::make(Str::random(8)),
+            'password' => Hash::make('ubuzima@2023'),
         ]);
         session()->flash('success', 'User created successfully.');
         $this->reset();
