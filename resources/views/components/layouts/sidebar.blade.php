@@ -29,8 +29,9 @@
                         :active="request()->routeIs('reservations.index')"/>
         <x-sidebar-link title="Orders" icon="burger" :href="route('orders.index')"
                         :active="request()->routeIs('orders.index')"/>
-        <x-sidebar-link title="Messages" icon="message"/>
-        <x-sidebar-link title="Gallery" icon="image"/>
-        <x-sidebar-link title="Newsletters" icon="square-rss"/>
+{{--        <x-sidebar-link title="Messages" icon="message"/>
+        <x-sidebar-link title="Gallery" icon="image"/>--}}
+        <x-sidebar-link title="Manage Users" icon="user-group" :href="route('users')"
+                        :active="request()->routeIs('users')"/>
     </ul>
 </div>

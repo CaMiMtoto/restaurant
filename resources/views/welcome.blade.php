@@ -134,7 +134,7 @@
                 <h1 class="uppercase tracking-wider text-4xl font-semibold">
                     Comming soon
                 </h1>
-                <form class="mt-6 flex items-center gap-4">
+                <form class="mt-6 flex flex-col md:flex-row items-center gap-4">
                     <x-text-input placeholder="Email" disabled class=" rounded-sm" type="email" name="email" required/>
                     <button disabled type="submit"
                         class="px-4 py-2 text-sm font-bold rounded-sm text-white uppercase bg-primary hover:bg-primary-dark">

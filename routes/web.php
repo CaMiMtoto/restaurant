@@ -2,12 +2,14 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Livewire\Admin\Categories\Index;
 use App\Http\Livewire\Admin\Items\ItemList;
 use App\Http\Livewire\Admin\Orders\AllOrders;
 use App\Http\Livewire\Admin\Orders\Orders;
 use App\Http\Livewire\Admin\Reservations;
+use App\Http\Livewire\Admin\UserManager\Users;
 use App\Http\Livewire\MyList;
 use App\Http\Livewire\PlaceOrder;
 use Illuminate\Support\Facades\Route;
@@ -25,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
 Route::get('/place-order', PlaceOrder::class)->name('place-order');
-Route::get('/order-details', [\App\Http\Controllers\OrderController::class, 'show'])->name('orders.show');
+Route::get('/order-details', [OrderController::class, 'show'])->name('orders.show');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -38,6 +40,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/reservations', Reservations::class)->name('reservations.index');
     Route::get('/orders', AllOrders::class)->name('orders.index');
+
+    Route::get('/users', Users::class)->name('users');
 
 });
 
